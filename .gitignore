@@ -1,0 +1,4 @@
+sfBooks_env/
+__pycache__/
+*.pyc
+
