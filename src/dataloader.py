@@ -7,26 +7,23 @@ import os
 from info import pgUsername, dbName
 
 
-def readAndCleanData():
+# Read in just the 'Names' column
+df = pd.read_csv("data/sf_military_new.csv", usecols=["Book_Title", "Author_Name"])
 
-  # Read in just the 'Names' column
-  df = pd.read_csv("data/sf_military_new.csv", usecols=["Author_Name"])
+# Cleaner function
+def cleanData(text):
+  return (
+        pd.Series(text)
+        .astype(str)
+        .str.replace(r"[^A-Za-z. ]", "", regex=True)  # allow letters, periods, spaces
+        .str.replace(r"\s+", " ", regex=True)  # collapse multiple spaces
+        .str.strip()
+        .str.title()
+    )
 
-# Clean the names
-  cleaned_series = (
-      df["Author_Name"]
-        .str.replace(r"[^A-Za-z ]", "", regex=True)  # remove punctuation/digits
-        .str.split()                                 # split into words
-        .apply(" ".join)                             # rejoin words with single spaces
-        .str.title()                                 # capitalize each word
-  )
+cleaned_df = df.apply(cleanData)
 
-  # Convert to a list if needed
-  cleaned_names = cleaned_series.tolist()
-
-  print(cleaned_names)
-
-
+print(cleaned_df.head())
 
 def transformData():
   pass
@@ -44,5 +41,4 @@ def loadData():
 
 
 if __name__ == "__main__":
-    readAndCleanData()
-    #loadData()
+  pass
