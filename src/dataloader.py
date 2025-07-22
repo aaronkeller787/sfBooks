@@ -7,8 +7,25 @@ import os
 from info import pgUsername, dbName
 
 
-def extractData():
-  pass
+def readAndCleanData():
+
+  # Read in just the 'Names' column
+  df = pd.read_csv("data/sf_military_new.csv", usecols=["Author_Name"])
+
+# Clean the names
+  cleaned_series = (
+      df["Author_Name"]
+        .str.replace(r"[^A-Za-z ]", "", regex=True)  # remove punctuation/digits
+        .str.split()                                 # split into words
+        .apply(" ".join)                             # rejoin words with single spaces
+        .str.title()                                 # capitalize each word
+  )
+
+  # Convert to a list if needed
+  cleaned_names = cleaned_series.tolist()
+
+  print(cleaned_names)
+
 
 
 def transformData():
@@ -27,5 +44,5 @@ def loadData():
 
 
 if __name__ == "__main__":
-    #extractData()
-    loadData()
+    readAndCleanData()
+    #loadData()
