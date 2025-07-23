@@ -12,15 +12,13 @@ This project is meant to extract data from external sources, transform it into u
 ## 🧩 2. Design
 
     Analyzed the dataset and mapped out the relational database schema:
-    - Identified core entities: books, authors, subgenres, ratings, etc.
-    - Created junction tables to support many-to-many relationships (e.g., book_author, book_subgenre).
+    - Identified core entities: books, authors, ratings, etc.
+    - Created junction tables to support many-to-many relationships (e.g., book_author).
 
     Developed a list of real-world questions the database should be able to answer:
         1. What are the most popular books by rating or vote count, and who wrote them?
-        2. How many books belong to each subgenre?
-        3. Which authors have contributed to the most books?
-        4. Which subgenres are most associated with the highest-rated books?
-        5. What are the average ratings and total votes per publication year?
+        2. Which authors have contributed to the most books?
+        3. What are the average ratings and total votes per publication year?
 
 ## 🛠️ 3. Build
 
