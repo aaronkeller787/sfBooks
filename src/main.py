@@ -1,7 +1,6 @@
 #####################################
 #              IMPORTS              #
 #####################################            
-import pandas as pd
 import psycopg
 from info import pgUsername, dbName
 
@@ -30,6 +29,7 @@ def question1():
             for row in results:
                 print(f"{row[0]} by {row[1]} has a rating of {row[2]} with a total vote count of {row[3]}")
 
+## Which authors have contributed to the most books?
 def question2():
         with psycopg.connect(f"dbname={dbName} user={pgUsername}") as conn:
             with conn.cursor() as cur:
@@ -51,6 +51,7 @@ def question2():
                 for row in results:
                     print(f"{row[0]} has written {row[1]} books")
 
+## What are the average ratings and total votes per publication year?
 def question3():
     with psycopg.connect(f"dbname={dbName} user={pgUsername}") as conn:
         with conn.cursor() as cur:
