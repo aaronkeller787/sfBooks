@@ -58,12 +58,10 @@ def question3():
             cur.execute("""
                 SELECT 
                     year_published AS "publication_year",
-                    AVG(total_votes)::NUMERIC(10,0) AS "vote_average"
+                    ROUND(AVG(total_votes))::INT AS vote_average
                 FROM books
                 GROUP BY year_published
                 ORDER BY year_published DESC;
-                
-
             """)
             results = cur.fetchall()
             for row in results:
